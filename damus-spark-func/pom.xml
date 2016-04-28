@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.ximalaya.damus</groupId>
+        <artifactId>damus</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>damus-spark-func</artifactId>
+    <packaging>jar</packaging>
+
+    <mailingLists>
+        <mailingList>
+            <name>xiao.ge@ximalaya.com</name>
+        </mailingList>
+        <mailingList>
+            <name>shroke.cao@ximalaya.com</name>
+        </mailingList>
+        <mailingList>
+            <name>lester.zhou@ximalaya.com</name>
+        </mailingList>
+    </mailingLists>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spark.version>1.4.0</spark.version>
+        <jackson.version>2.4.4</jackson.version>
+    </properties>
+
+    <dependencies>
+
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-core_2.10</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.spark</groupId>
+            <artifactId>spark-yarn_2.10</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ximalaya.damus</groupId>
+            <artifactId>damus-protocol</artifactId>
+            <version>${damus.protocol.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ximalaya.damus</groupId>
+            <artifactId>damus-common</artifactId>
+            <version>${damus.protocol.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <finalName>damus-func-all</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <encoding>utf-8</encoding>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>1.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <!-- package scale filters might be too strict, you can readily comment this if you like -->
+                            <filters>
+                                <filter>
+                                    <artifact>com.ximalaya.damus:damus-common</artifact>
+                                    <includes>
+                                        <include>com/ximalaya/damus/common/exception/*</include>
+                                        <include>com/ximalaya/damus/common/util/*</include>
+                                    </includes>
+                                </filter>
+                                <filter>
+                                    <artifact>com.ximalaya.damus:damus-protocol</artifact>
+                                    <includes>
+                                        <include>com/ximalaya/damus/protocol/*</include>
+                                        <include>com/ximalaya/damus/protocol/config/*</include>
+                                        <include>com/ximalaya/damus/protocol/dist/*</include>
+                                        <include>com/ximalaya/damus/protocol/exception/*</include>
+                                        <include>com/ximalaya/damus/protocol/meta/*</include>
+                                        <include>com/ximalaya/damus/protocol/raw/*</include>
+                                        <include>com/ximalaya/damus/protocol/request/*</include>
+                                        <include>com/ximalaya/damus/protocol/reduced/*</include>
+                                        <include>com/ximalaya/damus/protocol/resource/*</include>
+                                        <include>com/ximalaya/damus/protocol/util/*</include>
+                                    </includes>
+                                </filter>
+                            </filters>
+
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+
+    </build>
+
+</project>

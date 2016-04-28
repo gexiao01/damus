@@ -1,0 +1,10 @@
+{"network": "3G","os": "iPhone OS 9.1","type": 1}
+{"network": "3G","os": "iPhone","type": 1}
+{"network": "3G","os": "android 5.0","type": 1}
+{"network": "wifi","os": "iPhone OS 9.1","type": 1}
+{"network": "wifi","os": "iPhone","type": 1}
+{"network": "wifi","os": "iPhone","type": 1}
+{"network": "wifi","os": "android","type": 1}
+{"network": "wifi","os": "android","type": 999}
+{"network": "4G","os": "iPhone OS 9.1","type": 1}
+{"network": "4G","os": "android","type": 1}

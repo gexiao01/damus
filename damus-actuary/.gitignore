@@ -1,0 +1,6 @@
+/target/
+/.classpath
+/.project
+/.settings/
+/data/dist/reducedFlow
+/data/dist/reducedFlow.check

@@ -1,0 +1,13 @@
+/target/
+/lib/
+/.settings/
+/.classpath
+/.project
+/data/test/output/
+/data/online*/output/
+/data/online/ad_192*
+*/.DS_Store
+/damus.meta.bak
+/.DS_Store
+/core-site-output.xml
+/hdfs-site-output.xml

@@ -1,0 +1,3 @@
+/usr/local/hivebi/bin/hive -e "select IF(deviceInfo.deviceId is not null,deviceInfo.deviceId,props.androidId),props.adItemId,count(1) from ad_stat_show where date='2016011821' and props.logType in ('tingShow','soundShow') group by IF(deviceInfo.deviceId is not null,deviceInfo.deviceId,props.androidId),props.adItemId;" > /tmp/gexiao/deviceId-adItemId-2016011821.show
+
+/usr/local/hivebi/bin/hive -e "select IF(deviceInfo.deviceId is not null,deviceInfo.deviceId,props.androidId),props.adItemId,count(1) from ad_stat_click where date='2016011821' and (props.type is null OR props.type<>'show') group by IF(deviceInfo.deviceId is not null,deviceInfo.deviceId,props.androidId),props.adItemId;" > /tmp/gexiao/deviceId-adItemId-2016011821.click

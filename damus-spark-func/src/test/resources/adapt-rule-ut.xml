@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+	<rule>
+		<dimType>CARRIER</dimType>
+		<adaptType>LIKE</adaptType>
+		<match>联通</match>
+		<result>联通</result>
+	</rule>
+	<rule>
+		<dimType>CARRIER</dimType>
+		<adaptType>LIKE</adaptType>
+		<match>移动</match>
+		<result>移动</result>
+	</rule>
+	<rule>
+		<dimType>CARRIER</dimType>
+		<adaptType>LIKE</adaptType>
+		<match>电信</match>
+		<result>电信</result>
+	</rule>
+	<rule>
+		<dimType>CARRIER</dimType>
+		<adaptType>EQUAL</adaptType>
+		<match>jj12321</match>
+		<result>电信</result>
+	</rule>
+</rules>

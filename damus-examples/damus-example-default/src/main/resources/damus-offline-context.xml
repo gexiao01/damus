@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:tx="http://www.springframework.org/schema/tx" xmlns:util="http://www.springframework.org/schema/util"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.2.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.2.xsd"
+    default-lazy-init="false">
+
+    <context:annotation-config/>
+
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:damus.properties</value>
+                <value>classpath:spark.properties</value>
+                <value>classpath:flow-filter.properties</value>
+            </list>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="com.ximalaya.damus"/>
+
+    <util:properties id="sparkProps" location="classpath:spark.properties"/>
+
+    <!-- Resource -->
+
+    <bean id="rawDataResource" class="com.ximalaya.damus.protocol.resource.RollingVoidResource">
+        <constructor-arg name="path" value="${damus.offline.rawfile.path}"/>
+    </bean>
+
+    <beans profile="hdfs">
+        <bean id="dimDictResource" class="com.ximalaya.damus.protocol.resource.RollingHdfsResource" init-method="load">
+            <constructor-arg name="path" value="${damus.offline.dict.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.meta.DimDict"/>
+        </bean>
+        <bean id="dimDictDeltaResource" class="com.ximalaya.damus.protocol.resource.RollingHdfsResource">
+            <constructor-arg name="path" value="${damus.offline.dict.delta.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.meta.DimDict"/>
+        </bean>
+        <bean id="oneDDistResource" class="com.ximalaya.damus.protocol.resource.RollingHdfsResource">
+            <constructor-arg name="path" value="${damus.offline.dist.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.dist.OneDDist"/>
+        </bean>
+        <bean id="reducedFlowResource" class="com.ximalaya.damus.protocol.resource.RollingHdfsResource">
+            <constructor-arg name="path" value="${damus.offline.reducedfile.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.reduced.ReducedFlow"/>
+        </bean>
+    </beans>
+
+    <beans profile="file">
+        <bean id="dimDictResource" class="com.ximalaya.damus.protocol.resource.RollingFileResource" init-method="load">
+            <constructor-arg name="path" value="${damus.offline.dict.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.meta.DimDict"/>
+        </bean>
+        <bean id="dimDictDeltaResource" class="com.ximalaya.damus.protocol.resource.RollingFileResource">
+            <constructor-arg name="path" value="${damus.offline.dict.delta.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.meta.DimDict"/>
+        </bean>
+        <bean id="oneDDistResource" class="com.ximalaya.damus.protocol.resource.RollingFileResource">
+            <constructor-arg name="path" value="${damus.offline.dist.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.dist.OneDDist"/>
+        </bean>
+        <bean id="reducedFlowResource" class="com.ximalaya.damus.protocol.resource.RollingFileResource">
+            <constructor-arg name="path" value="${damus.offline.reducedfile.path}"/>
+            <constructor-arg name="clz" value="com.ximalaya.damus.protocol.reduced.ReducedFlow"/>
+        </bean>
+    </beans>
+</beans>

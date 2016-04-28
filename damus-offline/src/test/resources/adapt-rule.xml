@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rules>
+	<rule>
+		<dimType>OS</dimType>
+		<adaptType>LIKE</adaptType>
+		<match>android</match>
+		<result>Android</result>
+	</rule>
+	<rule>
+		<dimType>OS</dimType>
+		<adaptType>LIKE</adaptType>
+		<match>iphone</match>
+		<result>iPhone</result>
+	</rule>
+</rules>
