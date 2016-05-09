@@ -29,24 +29,6 @@ public abstract class AbstractDimTypeMapper<F> implements Function<F, EnumMap<Di
 			return new EnumMap<DimType, String>(DimType.class);
 		}
 
-		// typeObjectMap.put(DimType.POSITION,
-		// flow.getProps().getPositionName());
-		// typeObjectMap.put(DimType.PROVINCE, "" +
-		// flow.getProps().getProvinceId());
-		// typeObjectMap.put(DimType.CITY, "" + flow.getProps().getCityId());
-		// typeObjectMap.put(DimType.VERSION, flow.getAppInfo().getVersion());
-		// typeObjectMap.put(DimType.RESOLUTION,
-		// flow.getDeviceInfo().getResolution().toString());
-		// typeObjectMap.put(DimType.PACKAGE,
-		// flow.getAppInfo().getPackageName());
-		// typeObjectMap.put(DimType.CARRIER, "" +
-		// flow.getProps().getOperator());
-		// typeObjectMap.put(DimType.OS, flow.getProps().getDevice());
-		// typeObjectMap.put(DimType.NETWORK, flow.getProps().getNetwork());
-		// // 时间在这算一遍吧
-		// typeObjectMap.put(DimType.HOUR, "" +
-		// DateUtils.getLongTimeHour(flow.getTs()));
-		// typeObjectMap.put(DimType.APP, "" + flow.getProps().getAppid());
 	}
 
 	protected abstract EnumMap<DimType, String> doMap(F flow);

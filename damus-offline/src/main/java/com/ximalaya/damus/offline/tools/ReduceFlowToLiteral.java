@@ -7,7 +7,6 @@ import java.util.List;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
 import org.apache.spark.api.java.function.Function;
-import org.springframework.beans.factory.annotation.Value;
 
 import com.ximalaya.damus.protocol.config.DimType;
 import com.ximalaya.damus.protocol.meta.DimDict;

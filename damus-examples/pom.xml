@@ -18,6 +18,8 @@
             <name>xiao.ge@ximalaya.com</name>
         </mailingList>
     </mailingLists>
-
+    <modules>
+        <module>damus-example-default</module>
+    </modules>
 
  </project>

@@ -1,4 +1,4 @@
-package com.ximalaya.damus.actuary;
+package com.ximalaya.damus.example.ad;
 
 import org.apache.log4j.Logger;
 import org.springframework.context.support.ClassPathXmlApplicationContext;

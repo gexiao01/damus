@@ -20,36 +20,18 @@ public abstract class AbstractFlowFilter<F> implements Function<F, Boolean> {
 	@Override
 	public Boolean call(F flow) {
 		try {
-			// 目前只针对，failReason与logType的null进行校验.
-			// boolean nullValid = filterNull(flow, flow.getProps(),
-			// flow.getProps().getFailReason(), flow.getProps()
-			// .getLogType(), flow.getAppInfo(), flow.getDeviceInfo());
-			// boolean finalValid = nullValid &&
-			// logTypeValid(flow.getProps().getLogType())
-			// && failReasonValid(flow.getProps().getFailReason()) &&
-			// tsValid(flow.getTs());
-
 			boolean finalValid = doFilter(flow);
 			if (!finalValid) {
-				addFilterFlowLog(flow);
+				logger.debug(new LogMessageBuilder("flow data invalid.").addParameter("flow", flow).toString());
 			}
 			return finalValid;
 		} catch (Exception e) {
-			addFilterFlowLog(flow);
+			logger.debug(new LogMessageBuilder("flow data invalid.").addParameter("flow", flow).toString(), e);
 			return false;
 		}
 	}
 
 	protected abstract boolean doFilter(F flow);
-
-	/**
-	 * 先暂时不打日志，数据量过大，也没人去看 TODO 可以考虑就记录个总数
-	 * 
-	 * @param flow
-	 */
-	protected void addFilterFlowLog(F flow) {
-		logger.debug(new LogMessageBuilder("flow data invalid.").addParameter("flow", flow).toString());
-	}
 
 	/**
 	 * 判断是否为null验证
