@@ -1,0 +1,2 @@
+INSERT INTO position(title, app_type, upload_size) VALUES ('启动图','TING','{\"ios6pWidth\":1242,\"ios6pHeight\":2210,\"ios6Width\":750,\"ios6Height\":1334,\"ios5Width\":750,\"ios5Height\":1334,\"androidWidth\":720,\"androidHeight\":1014,\"ipadWidth\":1536,\"ipadHeight\":2048}');
+INSERT INTO position(title, app_type, upload_size) VALUES ('发现页banner','TING','{\"ios6pWidth\":1242,\"ios6pHeight\":180,\"ios6Width\":640,\"ios6Height\":120,\"ios5Width\":640,\"ios5Height\":120,\"androidWidth\":640,\"androidHeight\":120}');

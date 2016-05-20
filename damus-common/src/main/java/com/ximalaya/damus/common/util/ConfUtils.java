@@ -25,13 +25,13 @@ public class ConfUtils {
 		}
 	}
 
-	public static String[] loadActiveProfiles() {
+	public static String[] loadActiveProfiles(String key) {
 		InputStream is = null;
 		try {
 			is = ConfUtils.class.getResourceAsStream("/damus.properties");
 			Properties props = new Properties();
 			props.load(is);
-			String profiles = props.getProperty("damus.offline.profiles");
+			String profiles = props.getProperty(key);
 			return profiles.split(",");
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -25,7 +25,7 @@ public class DamusOfflineMain {
 
 		logger = Logger.getLogger(DamusOfflineMain.class);
 
-		String[] activeProfiles = ConfUtils.loadActiveProfiles();
+		String[] activeProfiles = ConfUtils.loadActiveProfiles("damus.offline.profiles");
 
 		logger.info("Start Damus-Offline Main with profiles: " + Arrays.asList(activeProfiles));
 

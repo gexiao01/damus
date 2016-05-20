@@ -9,7 +9,7 @@ import com.ximalaya.damus.protocol.meta.DimDict;
 import com.ximalaya.damus.protocol.request.CalcRequest;
 import com.ximalaya.damus.protocol.resource.Resource;
 
-public abstract class AbstractRequestParser implements RequestParser {
+public abstract class AbstractRequestParser<T> implements RequestParser<T> {
 
 	@Autowired
 	@Qualifier("dimDictResource")
@@ -18,36 +18,16 @@ public abstract class AbstractRequestParser implements RequestParser {
 	private Logger logger = Logger.getLogger(getClass());
 
 	@Override
-	public CalcRequest parseCalcRequest(String jsonStr) {
-		logger.info("parseCalcRequest Start: " + jsonStr);
+	public CalcRequest parseCalcRequest(T bo) {
+		logger.info("parseCalcRequest Start: " + bo);
 
-		CalcRequest calcRequest = doParse(jsonStr);
+		CalcRequest calcRequest = doParse(bo);
 		// parseNetwork(calcRequest, targetContent.getTargetNetworks());
 
 		logger.info("parseCalcRequest Finish: " + calcRequest);
 		return calcRequest;
 	}
 
-	// private void parseNetwork(CalcRequest calcRequest, List<NetworkType>
-	// targetNetworks) {
-	// Map<String, Long> valueMap = getValueMap(DimType.NETWORK);
-	//
-	// for (NetworkType network : targetNetworks) {
-	// for (String name : network.getNames()) {
-	// if (valueMap.containsKey(name)) {
-	// calcRequest.add(DimType.NETWORK, valueMap.get(name));
-	// }
-	// }
-	// }
-	//
-	// calcRequest.add(DimType.NETWORK, Constant.NOT_FOUND_ID);
-	// if (targetNetworks.contains(NetworkType.OTHER)) {
-	// // explicitly target unknown
-	// calcRequest.add(DimType.NETWORK, Constant.UNKNOWN_ID);
-	// }
-	//
-	// }
-
-	protected abstract CalcRequest doParse(String jsonStr);
+	protected abstract CalcRequest doParse(T bo);
 
 }

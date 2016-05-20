@@ -7,7 +7,7 @@ import com.ximalaya.damus.common.util.JsonUtils;
 import com.ximalaya.damus.protocol.config.DimType;
 import com.ximalaya.damus.protocol.request.CalcRequest;
 
-public class TestRequestParser extends AbstractRequestParser {
+public class TestRequestParser extends AbstractRequestParser<String> {
 
 	@Override
 	protected CalcRequest doParse(String jsonStr) {

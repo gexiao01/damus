@@ -2,7 +2,7 @@ package com.ximalaya.damus.actuary.service;
 
 import com.ximalaya.damus.protocol.request.CalcRequest;
 
-public interface RequestParser {
+public interface RequestParser<T> {
 
-	CalcRequest parseCalcRequest(String jsonStr);
+	CalcRequest parseCalcRequest(T bo);
 }
