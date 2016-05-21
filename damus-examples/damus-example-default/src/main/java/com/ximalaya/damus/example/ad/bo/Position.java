@@ -2,8 +2,6 @@
 
 package com.ximalaya.damus.example.ad.bo;
 
-import java.util.List;
-
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -14,8 +12,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public final class Position {
 	private int id;
 	private String title;
-	private List<String> names;
-	private String namesJsonString;
 
 	public Integer getId() {
 		return id;
@@ -33,25 +29,9 @@ public final class Position {
 		this.title = title;
 	}
 
-	public List<String> getNames() {
-		return names;
-	}
-
-	public void setNames(List<String> names) {
-		this.names = names;
-	}
-
 	@Override
 	public String toString() {
 		return ToStringBuilder.reflectionToString(this, ToStringStyle.SHORT_PREFIX_STYLE);
-	}
-
-	public String getNamesJsonString() {
-		return namesJsonString;
-	}
-
-	public void setNamesJsonString(String namesJsonString) {
-		this.namesJsonString = namesJsonString;
 	}
 
 }

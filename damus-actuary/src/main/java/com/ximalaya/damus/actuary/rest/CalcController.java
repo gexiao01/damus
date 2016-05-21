@@ -13,19 +13,19 @@ import com.ximalaya.damus.protocol.request.CalcRequest;
 
 @Component
 @Rest
-public class CalcController {
+public class CalcController<T> {
 
 	@Autowired
 	private DispatchService dispatchService;
 	@Autowired
 	private EstimateService estimateService;
 	@Autowired
-	private RequestParser requestService;
+	private RequestParser<T> requestParser;
 	@Autowired
 	private ActuaryService actuaryService;
 
-	@Rest(path = "/ad/actuary")
-	public long actuary(String target) throws DamusException {
+	@Rest(path = "/actuary")
+	public long actuary(T target) throws DamusException {
 		CalcRequest request = getRequest(target);
 		return dispatchService.handleRequest(request);
 	}
@@ -51,14 +51,14 @@ public class CalcController {
 	// return result;
 	// }
 
-	@Rest(path = "/ad/estimate")
-	public long estimate(String target) throws DamusException {
+	@Rest(path = "/estimate")
+	public long estimate(T target) throws DamusException {
 		CalcRequest request = getRequest(target);
 		return estimateService.handleRequest(request);
 	}
 
-	private CalcRequest getRequest(String target) {
-		return requestService.parseCalcRequest(target);
+	private CalcRequest getRequest(T target) {
+		return requestParser.parseCalcRequest(target);
 	}
 
 }

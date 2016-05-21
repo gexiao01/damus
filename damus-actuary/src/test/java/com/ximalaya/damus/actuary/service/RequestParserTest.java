@@ -17,7 +17,7 @@ public class RequestParserTest extends BaseContextTest {
 	// LoggerFactory.getLogger(CalcRequestServiceTest.class);
 
 	@Autowired
-	private RequestParser requestParser;
+	private RequestParser<String> requestParser;
 
 	@Test
 	public void testRequestParse() {
