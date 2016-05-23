@@ -36,6 +36,7 @@
 		<module>damus-offline</module>
 		<module>damus-mining</module>
 		<module>damus-examples</module>
+		<module>damus-relativity</module>
 	</modules>
 
 	<distributionManagement>

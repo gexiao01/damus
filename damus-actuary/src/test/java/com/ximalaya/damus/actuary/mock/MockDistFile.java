@@ -24,49 +24,50 @@ import com.ximalaya.damus.protocol.util.SerializeUtil;
  */
 public class MockDistFile {
 
-    public static void lateralToBinary(String fromPath, String toPath, DimDict dict)
-            throws IOException, DamusException {
-        List<String> lines = FileUtils.readLines(new File(fromPath));
-        OutputStream os = new FileOutputStream(toPath);
-        for (String line : lines) {
-            ReducedFlow.fromPrettyFormat(line, dict).serialize(os);
-        }
-        os.close();
-    }
+	@SuppressWarnings("unchecked")
+	public static void lateralToBinary(String fromPath, String toPath, DimDict dict) throws IOException, DamusException {
+		List<String> lines = FileUtils.readLines(new File(fromPath));
+		OutputStream os = new FileOutputStream(toPath);
+		for (String line : lines) {
+			ReducedFlow.fromPrettyFormat(line, dict).serialize(os);
+		}
+		os.close();
+	}
 
-    public static void binaryToLateral(String fromPath, String toPath, DimDict dict)
-            throws IOException, DamusException {
+	public static void binaryToLateral(String fromPath, String toPath, DimDict dict) throws IOException, DamusException {
 
-        InputStream is = new FileInputStream(fromPath);
-        List<String> lines = new ArrayList<String>();
-        while (is.available() > 0) {
-            ReducedFlow flow = SerializeUtil.deserializeFromStream(is, ReducedFlow.class);
-            lines.add(flow.toPrettyFormat(dict));
-        }
-        is.close();
-        FileUtils.writeLines(new File(toPath), lines);
-    }
+		InputStream is = new FileInputStream(fromPath);
+		List<String> lines = new ArrayList<String>();
+		while (is.available() > 0) {
+			ReducedFlow flow = SerializeUtil.deserializeFromStream(is, ReducedFlow.class);
+			lines.add(flow.toPrettyFormat(dict));
+		}
+		is.close();
+		FileUtils.writeLines(new File(toPath), lines);
+	}
 
-    public static void main(String[] args) throws DamusException, IOException {
+	public static void main(String[] args) throws DamusException, IOException {
 
-        // mock("./data/dist/dimdict", "./data/dist/reducedFlow.literal", "./data/dist/reducedFlow",
-        // false);
-        // mock("./data/dist/dimdict", "./data/dist/reducedFlow", "./data/dist/reducedFlow.check",
-        // true);
+		// mock("./data/dist/dimdict", "./data/dist/reducedFlow.literal",
+		// "./data/dist/reducedFlow",
+		// false);
+		// mock("./data/dist/dimdict", "./data/dist/reducedFlow",
+		// "./data/dist/reducedFlow.check",
+		// true);
 
-        mock("./data/quasi/damus.meta", "./data/quasi/-damus-reduced-flow..temp-part-00000",
-                "./data/quasi/reduceFlow.literal", true);
-    }
+		mock("./data/quasi/damus.meta", "./data/quasi/-damus-reduced-flow..temp-part-00000",
+				"./data/quasi/reduceFlow.literal", true);
+	}
 
-    static void mock(String dictPath, String fromPath, String toPath, boolean binaryToLateral)
-            throws IOException, DamusException {
-        Resource<DimDict> dimDictResource = new FileResource<DimDict>(dictPath, DimDict.class);
-        DimDict dict = dimDictResource.lazyGet();
+	static void mock(String dictPath, String fromPath, String toPath, boolean binaryToLateral) throws IOException,
+			DamusException {
+		Resource<DimDict> dimDictResource = new FileResource<DimDict>(dictPath, DimDict.class);
+		DimDict dict = dimDictResource.lazyGet();
 
-        if (binaryToLateral) {
-            binaryToLateral(fromPath, toPath, dict);
-        } else {
-            lateralToBinary(fromPath, toPath, dict);
-        }
-    }
+		if (binaryToLateral) {
+			binaryToLateral(fromPath, toPath, dict);
+		} else {
+			lateralToBinary(fromPath, toPath, dict);
+		}
+	}
 }
